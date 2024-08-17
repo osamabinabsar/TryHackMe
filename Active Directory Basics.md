@@ -104,3 +104,136 @@ ___________________________________________________
 -----
 | Domain Controllers	| Includes all existing DCs on the domain. |
 --------------------------------------------------------------------------
+
+
+
+Organizational Units (OUs) which are container objects that allow you to classify users and machines. OUs are mainly used to define sets of users with similar policing requirements. The people in the Sales department of your organisation are likely to have a different set of policies applied than the people in IT, for example. Keep in mind that a user can only be a part of a single OU at a time.
+
+
+
+Creating new Organizational Unit in AD
+![image](https://github.com/user-attachments/assets/a897dfc0-4c3d-4c20-8650-60b836fa6f0c)
+
+These containers are created by Windows automatically and contain the following:
+
+ **Builtin**: Contains default groups available to any Windows host.
+ 
+ **Computers**: Any machine joining the network will be put here by default. You can move them if needed.
+ 
+ **Domain** Controllers: Default OU that contains the DCs in your network.
+ 
+ **Users**: Default users and groups that apply to a domain-wide context.
+ 
+ **Managed** Service Accounts: Holds accounts used by services in your Windows domain.
+
+Security Groups vs OUs
+
+You are probably wondering why we have both groups and OUs. While both are used to classify users and computers, their purposes are entirely different:
+
+- OUs are handy for applying policies to users and computers, which include specific configurations that pertain to sets of users depending on their particular role in the enterprise. Remember, a user can only be a member of a single OU at a time, as it wouldn't make sense to try to apply two different sets of policies to a single user.
+- Security Groups, on the other hand, are used to grant permissions over resources. For example, you will use groups if you want to allow some users to access a shared folder or network printer. A user can be a part of many groups, which is needed to grant access to multiple resources.
+
+
+**Os are protected from accidental deletion, to delete those, option have to be enabled from view menu > Advanced Features**
+![image](https://github.com/user-attachments/assets/d4bbfcf3-0638-4167-830f-e9032101c10c)
+![image](https://github.com/user-attachments/assets/2f2b5ec1-8c88-4222-a7a2-a89113857c08)
+![image](https://github.com/user-attachments/assets/18920f62-384b-421b-9197-11b521589a9a)
+Remove the option of protect object... from properties > Object tab.
+![image](https://github.com/user-attachments/assets/6e36cac1-3366-4ff5-b8af-3f5c32bba054)
+
+
+#### Delegation
+
+One of the nice things you can do in AD is to give specific users some control over some OUs. This process is known as delegation and allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator to step in.
+![image](https://github.com/user-attachments/assets/8a21ebdb-2aa0-4da9-9fc1-26da61bccf0d)
+_Note that we right click on the OU for which we want to delegate_
+
+##### When a user does not have the privelege of opening Active Directory control panel, PowerShell can be sued to do the tasks.
+![image](https://github.com/user-attachments/assets/edebb782-9878-4047-8558-7eb6faa8604e)
+
+**Below Image shows the error when Phillip does not have the requited privileges to change the passowrd**
+![image](https://github.com/user-attachments/assets/f76c0ab0-0ba3-45b6-996c-7c44f4dc09a7)
+
+**After permissions granted**
+
+
+###  Task 5 Managing Computers in AD
+
+devices divided into at least the three following categories:
+1. devices divided into at least the three following categories:
+   - These devices should never have a privileged user signed into them.
+2. Servers
+   -
+3. Domain Controllers
+    - These devices are often deemed the most sensitive devices within the network as they contain hashed passwords for all user accounts within the environment.
+  
+
+###  Task 6 Group Policies
+Group Policy Objects (GPO). GPOs are simply a collection of settings that can be applied to OUs. GPOs can contain policies aimed at either users or computers, allowing you to set a baseline on specific machines and identities.
+
+To configure Group Policies, you first create a GPO under Group Policy Objects and then link it to the OU where you want the policies to apply. 
+
+The Settings tab includes the actual contents of the GPO and lets us know what specific configurations it applies. As stated before, each GPO has configurations that apply to computers only and configurations that apply to users only. I
+
+Editing GPO
+![b71d8de9e74d129d0ad4142863deadc4](https://github.com/user-attachments/assets/d8e12106-0f9c-4cfa-b4eb-56b7516ae1e3)
+![bd3665c2569aa8fbe4f7482a5750f018](https://github.com/user-attachments/assets/6d3c08ec-0adf-40b7-954c-e310da7cd27d)
+
+
+
+
+
+
+
+
+___________________________________________________
+![AD Tree explanatioon](https://github.com/user-attachments/assets/77001d4e-e040-453d-bc60-acf7dcf490f2)
+### What is `thm.local`?
+
+In the image you provided, `thm.local` is the **domain name** in the Active Directory (AD) environment. A domain in AD is a logical grouping of objects such as users, computers, and other resources that are managed under a single namespace. It is the central point of management for all the objects within it.
+
+### Understanding the Tree Structure:
+
+The tree structure shown in your image represents the **Active Directory hierarchy** within the `thm.local` domain. Let's break down the different elements:
+
+1. **thm.local**: 
+   - This is the **root of the domain**. It's the top level of the AD hierarchy for your environment, under which all objects and organizational units (OUs) reside.
+
+2. **Organizational Units (OUs)**:
+   - **Built-in**: This OU contains default groups and accounts that are created automatically when the domain is set up. It includes groups like Administrators, Users, etc., which have specific roles and permissions.
+   - **Computers**: This OU is where computer accounts are automatically placed when computers join the domain, unless they are manually moved to another OU.
+   - **Domain Controllers**: This contains the accounts of the domain controllers, which are servers responsible for the authentication of users and managing the AD database.
+   - **ForeignSecurityPrincipals**: This contains security principals (users or groups) from trusted external domains or forests.
+   - **Managed Service Accounts**: This OU holds service accounts that are automatically managed by the system.
+   - **Program Data**: This is a system container used for storing application-specific data.
+   - **System**: This OU contains system-related information and objects that are necessary for AD's operation, like DNS-related records.
+   - **THM**: This is a custom OU created for organizing objects. It has sub-OUs like IT, Management, Marketing, Sales, and Students.
+     - Each of these sub-OUs (like IT, Management, etc.) may contain users, computers, and other objects relevant to that department.
+
+3. **Users**: This OU contains user accounts and groups that are not placed in custom OUs. It is the default location for users and groups created in the domain.
+
+4. **NTDS Quotas**: This is used for managing and limiting the number of objects that can be created by users within the domain.
+
+5. **TPM Devices**: This OU is for managing Trusted Platform Module (TPM) information associated with computers in the domain.
+
+### Referring to Entities in Active Directory:
+
+Yes, you can refer to everything within the `thm.local` domain as **objects**. In Active Directory, the term "object" is a broad one and can refer to any of the following:
+
+- **Users**: Accounts representing individuals in the domain.
+- **Groups**: Collections of users, computers, or other groups.
+- **Computers**: Accounts representing physical or virtual machines.
+- **Organizational Units (OUs)**: Containers used to organize other objects within the domain.
+- **Service Accounts**: Accounts used by services or applications.
+- **Domain Controllers**: Servers that hold the AD database and perform authentication.
+
+Each of these entities is indeed an **object** in Active Directory. The entire directory structure, including OUs, users, groups, computers, and even certain system components, are all considered objects in AD.
+
+### Summary:
+
+- **thm.local** is your domain.
+- The tree structure represents the hierarchical organization of your AD objects.
+- You can refer to any entity within the AD as an **object**, whether it's a user, computer, group, OU, or even domain controllers and built-in system containers. 
+
+This object-oriented structure is fundamental to how Active Directory organizes and manages resources in a domain.
+
