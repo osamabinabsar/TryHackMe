@@ -89,19 +89,13 @@ Security principals in Active Directory encompass all the entities that can be a
 *Security Groups* 
 -----------------------------------
 | Security Group |	Description | 
-___________________________________________________
+|-----------------|--------------------|
 | Domain Admins	|  Users of this group have administrative privileges over the entire domain. By default, they can administer any computer on the domain, including the DCs. |
-----
 | Server Operators	| Users in this group can administer Domain Controllers. They cannot change any administrative group memberships. |
-----
 | Backup Operators |	Users in this group are allowed to access any file, ignoring their permissions. They are used to perform backups of data on computers. |
-----
 | Account Operators	| Users in this group can create or modify other accounts in the domain. |
-----
 | Domain Users	 | Includes all existing user accounts in the domain. |
-----
 | Domain Computers	| Includes all existing computers in the domain. |
------
 | Domain Controllers	| Includes all existing DCs on the domain. |
 --------------------------------------------------------------------------
 
@@ -163,7 +157,6 @@ devices divided into at least the three following categories:
 1. devices divided into at least the three following categories:
    - These devices should never have a privileged user signed into them.
 2. Servers
-   -
 3. Domain Controllers
     - These devices are often deemed the most sensitive devices within the network as they contain hashed passwords for all user accounts within the environment.
   
