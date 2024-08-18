@@ -173,8 +173,67 @@ Editing GPO
 ![bd3665c2569aa8fbe4f7482a5750f018](https://github.com/user-attachments/assets/6d3c08ec-0adf-40b7-954c-e310da7cd27d)
 
 
+#### GPO distribution
+GPOs are distributed to the network via a network share called SYSVOL, which is stored in the DC. All users in a domain should typically have access to this share over the network to sync their GPOs periodically. The SYSVOL share points by default to the C:\Windows\SYSVOL\sysvol\ directory on each of the DCs in our network.
+Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up. If you want to force any particular computer to sync its GPOs immediately, you can always run the following command on the desired computer:
+Windows PowerShell          PS C:\> gpupdate /force
+
+### If we want to change anything specific to user, we should look for the settings under User Configuration
+
+For the first GPO, regarding screen locking for workstations and servers, we could directly apply it over the Workstations, Servers and Domain Controllers OUs we created previously.
+
+While this solution should work, an alternative consists of simply applying the GPO to the root domain, as we want the GPO to affect all of our computers. Since the Workstations, Servers and Domain Controllers OUs are all child OUs of the root domain, they will inherit its policies.
+
+**Note: You might notice that if our GPO is applied to the root domain, it will also be inherited by other OUs like Sales or Marketing. Since these OUs contain users only, any Computer Configuration in our GPO will be ignored by them.**
+![44c0cde18837cb6333c78749356ac0ee](https://github.com/user-attachments/assets/c83052ad-5f5a-47d0-ace3-cb72442cb7fa)
+
+###  Task 7 Athentication Methods
+- Windows domains, all credentials are stored in the Domain Controllers.
+- Two protocols can be used for network authentication in windows domains:
+     - Kerberos: Used by any recent version of Windows. This is the default protocol in any recent domain.
+     - NetNTLM: Legacy authentication protocol kept for compatibility purposes.
+##### Kerberos Authenticaiton Process:
+       1. Encrypted username and timestamp is sent using key derived form pass ot Key Distribution Center
+       2. The KDC will create and send back a Ticket Granting Ticket (TGT), which will allow the user to request additional tickets to access specific services. The need for a ticket to get more tickets may sound a bit weird, but it allows users to request service tickets without passing their credentials every time they want to connect to a service. Along with the TGT, a Session Key is given to the user, which they will need to generate the following requests.
+       3. When a user wants to connect to a service on the network like a share, website or database, they will use their TGT to ask the KDC for a Ticket Granting Service (TGS). TGS are tickets that allow connection only to the specific service they were created for. To request a TGS, the user will send their username and a timestamp encrypted using the Session Key, along with the TGT and a Service Principal Name (SPN), which indicates the service and server name we intend to access.
+       4. As a result, the KDC will send us a TGS along with a Service Session Key, which we will need to authenticate to the service we want to access. The TGS is encrypted using a key derived from the Service Owner Hash. The Service Owner is the user or machine account that the service runs under. The TGS contains a copy of the Service Session Key on its encrypted contents so that the Service Owner can access it by decrypting the TGS.
+         
+![d36f5a024c20fb480cdae8cd09ddc09f](https://github.com/user-attachments/assets/3d0b562d-89a9-488c-ad2e-8f63c41c23a2)
+
+![d36f5a024c20fb480cdae8cd09ddc09f](https://github.com/user-attachments/assets/0980de9f-02b8-4e1c-8ffa-b6c68505d064)
+![d36f5a024c20fb480cdae8cd09ddc09f](https://github.com/user-attachments/assets/bc00e6b2-7b7a-4359-b10e-764da71001a8)
+![d36f5a024c20fb480cdae8cd09ddc09f](https://github.com/user-attachments/assets/d5676718-54b3-47d2-b54e-54202a76a313)
+
+#####  NetNTLM Authentication
+NetNTLM works using a challenge-response mechanism. The entire process is as follows:
+1. The client sends an authentication request to the server they want to access.
+2. The server generates a random number and sends it as a challenge to the client.
+3. The client combines their NTLM password hash with the challenge (and other known data) to generate a response to the challenge and sends it back to the server for verification.
+4. The server forwards the challenge and the response to the Domain Controller for verification.
+5. The domain controller uses the challenge to recalculate the response and compares it to the original response sent by the client. If they both match, the client is authenticated; otherwise, access is denied.
+6. The authentication result is sent back to the server.
+7. The server forwards the authentication result to the client.
+   **Note that the user's password (or hash) is never transmitted through the network for security.**
+   
+![2eab5cacbd0d3e9dc9afb86169b711ec](https://github.com/user-attachments/assets/fda6ebfc-f5df-4fb2-b570-7bf084607d90)
+
+**Note: The described process applies when using a domain account. If a local account is used, the server can verify the response to the challenge itself without requiring interaction with the domain controller since it has the password hash stored locally on its SAM.**
 
 
+         A new security group needs to be introduced when talking about trees and forests. The Enterprise Admins group will grant a user administrative privileges over all of an enterprise's domains. Each domain would still have its Domain Admins with administrator privileges over their single domains and the Enterprise Admins who can control everything in the enterprise.
+
+**Trust Realtionships:**^2
+When an object needs to access another object within a forest but different Tree, a proccess is set up by joining trees and forests known as trust relationships.
+The simplest trust relationship that can be established is a one-way trust relationship. In a one-way trust, if Domain AAA trusts Domain BBB, this means that a user on BBB can be authorised to access resources on AAA:
+
+Trusts![af95eb1a4b6c672491d8989f79c00200](https://github.com/user-attachments/assets/7c950b48-1b85-457e-855a-c7822ef99c91)
+
+
+The direction of the one-way trust relationship is contrary to that of the access direction.
+
+Two-way trust relationships can also be made to allow both domains to mutually authorise users from the other. By default, joining several domains under a tree or a forest will form a two-way trust relationship.
+
+It is important to note that having a trust relationship between domains doesn't automatically grant access to all resources on other domains. Once a trust relationship is established, you have the chance to authorise users across different domains, but it's up to you what is actually authorised or not.
 
 
 
@@ -230,3 +289,40 @@ Each of these entities is indeed an **object** in Active Directory. The entire d
 
 This object-oriented structure is fundamental to how Active Directory organizes and manages resources in a domain.
 
+_______________________________________________________________________________________
+###### 2 
+In Active Directory (AD), **trust relationships** are connections between two domains or forests that allow users in one domain to access resources in another domain. Trust relationships facilitate resource sharing and user authentication across different domains, helping to extend security boundaries and streamline access management.
+
+### Key Concepts of Trust Relationships:
+
+1. **Trust Directions**:
+   - **One-Way Trust**: In a one-way trust, one domain (the trusting domain) allows access to its resources by users from another domain (the trusted domain). However, the reverse is not true unless a separate trust is established.
+   - **Two-Way Trust**: This is a bidirectional trust where both domains trust each other, allowing users from either domain to access resources in the other domain.
+
+2. **Trust Types**:
+   - **Parent-Child Trust**: Automatically established when a new child domain is created within a domain tree. It is a two-way, transitive trust.
+   - **Tree-Root Trust**: Automatically established when a new tree is added to an existing forest. This trust is also two-way and transitive.
+   - **External Trust**: A manually created trust between two domains in different forests or between a domain in an Active Directory environment and a domain in a Windows NT 4.0 environment. This is typically a one-way, non-transitive trust.
+   - **Forest Trust**: A manually created trust between two forests that allows access to resources across all domains within those forests. This is a two-way, transitive trust.
+   - **Shortcut Trust**: A manually created trust that optimizes the authentication process between two domains in the same forest but in different trees, reducing the time it takes to navigate the trust paths.
+   - **Realm Trust**: A trust between an Active Directory domain and a non-Windows Kerberos realm, typically used for interoperability with UNIX/Linux environments. This can be one-way or two-way, transitive or non-transitive.
+
+3. **Trust Attributes**:
+   - **Transitive Trust**: A trust that can extend beyond two domains to include other trusted domains. For example, if Domain A trusts Domain B, and Domain B trusts Domain C, then Domain A can also trust Domain C through transitive trust.
+   - **Non-Transitive Trust**: A trust that is limited to the two domains involved in the trust. It does not extend to other domains.
+
+4. **Trust Authentication Levels**:
+   - **Forest-Wide Authentication**: Users in the trusted forest can authenticate to resources in the trusting forest without needing explicit permissions on each resource.
+   - **Selective Authentication**: Requires explicit permissions to be set for users from the trusted domain or forest to access resources in the trusting domain or forest. This is a more secure, restrictive option.
+
+### Common Uses of Trust Relationships:
+- **Mergers and Acquisitions**: Trust relationships can be established between domains of different companies to allow resource sharing during a merger or acquisition.
+- **Resource Sharing**: Trusts enable users in one domain to access resources like files, printers, and applications in another domain without requiring separate credentials.
+- **Cross-Forest Collaboration**: In environments with multiple forests, trust relationships enable seamless collaboration and resource access across different parts of the organization.
+
+### Management and Security Considerations:
+- **Trust Monitoring**: Regularly monitor and review trust relationships to ensure they are still required and properly secured.
+- **Security**: Implement Selective Authentication when possible to limit access and reduce potential security risks.
+- **Trust Verification**: Periodically verify trust relationships using tools like `nltest` or the Active Directory Domains and Trusts console to ensure they are functioning correctly.
+
+Understanding and properly configuring trust relationships is crucial for maintaining secure and efficient cross-domain or cross-forest operations in an Active Directory environment.
