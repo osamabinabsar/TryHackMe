@@ -127,6 +127,28 @@ The hash is gained using murphy username and pass and upgrading tty shell using 
       sudo -l
 **but sudoing cat /etc/shadow gives the hashes**
 
+
+
+# Metasploit : Meterpreter
+
+Meterpreter runs in RAM to avoid being detected
+![image](https://github.com/user-attachments/assets/3a45626c-294b-46de-8fa6-79d771695798)
+
+Not even DLL(Dynamic Link Libraries) will have meterpreter.dll
+Meterpreter willl establish TLS 
+![image](https://github.com/user-attachments/assets/672273c0-84c1-4e93-a9e6-3fdab4085567)
+![image](https://github.com/user-attachments/assets/a58961ce-1057-43bc-abf0-9825892f1729)
+![image](https://github.com/user-attachments/assets/53381c67-0966-4cde-8b5c-40ff4e802f11)
+![image](https://github.com/user-attachments/assets/35ff2e14-2548-400f-8e57-7a54b0bd112b)
+![image](https://github.com/user-attachments/assets/59c774cd-53a8-40a5-8f12-eefd9b679307)
+![image](https://github.com/user-attachments/assets/9c831fd4-b95d-4e99-8bd2-7c1ed24c28f1)
+![image](https://github.com/user-attachments/assets/9232ca73-44cc-4e64-8c07-91e41442b509)
+![image](https://github.com/user-attachments/assets/f976cede-6e39-491f-b88b-ba5e2828aff8)
+
+
+
+
+
 ----------------------------------------------
 ###### 
 
