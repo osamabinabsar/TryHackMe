@@ -33,3 +33,20 @@
  
 
   ![image](https://github.com/user-attachments/assets/4dc3f0fe-8210-4c1c-997e-be5b68bba849)
+## ةسبرثىخة
+## ةسبرثىخة
+## ةس
+## msfvenom
+![image](https://github.com/user-attachments/assets/fa2f2da1-62f8-41e1-9840-96e2aaf2d360)
+
+### payload naming
+
+## 
+- ssh creds,
+- windwos pass of vnc, filezilla in .xml files, logging in over RDP, telnet, winexe, psexec, WinRM, syntax =     net user <username> <pass> /add
+- 
+
+![image](https://github.com/user-attachments/assets/7adb21f6-735c-4687-9c81-6f47a855459f)
+
+
+  
