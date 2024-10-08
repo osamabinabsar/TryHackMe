@@ -43,3 +43,54 @@ Uses complex math
 Available through programs and programming libraries
 
 ![image](https://github.com/user-attachments/assets/075a9804-d678-441f-8978-93dae7e0ab83)
+
+
+
+### Hashing
+A cryptographic hash function is an algorithm that takes data of arbitrary size as its input and returns a fixed size value, called message digest or checksum, as its output. For example, sha256sum calculates the SHA256 (Secure Hash Algorithm 256) message digest. SHA256, as the name indicates, returns a checksum of size 256 bits (32 bytes). This checksum is usually written using hexadecimal digits. Knowing that a hexadecimal digit represents 4 bits, the 256 bits checksum can be represented as 64 hexadecimal digits.
+
+**HMAC**
+
+Hash-based message authentication code (HMAC) is a message authentication code (MAC) that uses a cryptographic key in addition to a hash function.
+
+According to RFC2104, HMAC needs:
+
+secret key
+inner pad (ipad) a constant string. (RFC2104 uses the byte 0x36 repeated B times. The value of B depends on the chosen hash function.)
+outer pad (opad) a constant string. (RFC2104 uses the byte 0x5C repeated B times.)
+
+Calculating the HMAC follows the following steps as shown in the figure:
+
+Append zeroes to the key to make it of length B, i.e., to make its length match that of the ipad.
+Using bitwise exclusive-OR (XOR), represented by ⊕, calculate key ⊕ ipad.
+Append the message to the XOR output from step 2.
+Apply the hash function to the resulting stream of bytes (in step 3).
+Using XOR, calculate key ⊕ opad.
+Append the hash function output from step 4 to the XOR output from step 5.
+Apply the hash function to the resulting stream of bytes (in step 6) to get the HMAC.
+
+
+### PKI & SSL/TLS
+
+
+
+For a certificate to get signed by a certificate authority, we need to:
+
+1. Generate Certificate Signing Request (CSR): You create a certificate and send your public key to be signed by a third party.
+2. Send your CSR to a Certificate Authority (CA): The purpose is for the CA to sign your certificate. The alternative and usually insecure solution would be to self-sign your certificate.
+
+
+ You can use openssl to generate a certificate signing request using the command openssl req -new -nodes -newkey rsa:4096 -keyout key.pem -out cert.csr. We used the following options:
+
+    req -new create a new certificate signing request
+    -nodes save private key without a passphrase
+    -newkey generate a new private key
+    rsa:4096 generate an RSA key of size 4096 bits
+    -keyout specify where to save the key
+    -out save the certificate signing request
+  The -x509 indicates that we want to generate a self-signed certificate instead of a certificate request. The -sha256 specifies the use of the SHA-256 digest. It will be valid for one year as we added -days 365.
+
+
+### Authenticating with Passwords
+
+
