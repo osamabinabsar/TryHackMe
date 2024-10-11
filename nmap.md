@@ -41,3 +41,7 @@ On a side note, Masscan uses a similar approach to discover the available system
 Masscan is not installed on the AttackBox; however, it can be installed using apt install masscan.
 
 
+
+![image](https://github.com/user-attachments/assets/3ad70720-2232-4a19-9c77-17ba453eb053)
+
+
