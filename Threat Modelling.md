@@ -171,6 +171,10 @@ Threat modeling is a critical cybersecurity process used to identify, evaluate, 
 
 ![Threat Modelling THM (4)](https://github.com/user-attachments/assets/b8c63707-271c-47a1-99e1-4f68bfc3095b)
 ![Threat Modelling THM (5)](https://github.com/user-attachments/assets/b4270006-c4d9-4e8e-87e6-41e85930c676)
+
+
+---
+
 The **MITRE ATT&CK** (Adversarial Tactics, Techniques, and Common Knowledge) framework is a comprehensive, structured knowledge base of tactics and techniques used by cyber attackers. It’s widely adopted in cybersecurity for understanding, detecting, and responding to advanced threats. Familiarizing yourself with MITRE ATT&CK will help you analyze adversary behavior, improve detection strategies, and enhance threat modeling. 
 
 
