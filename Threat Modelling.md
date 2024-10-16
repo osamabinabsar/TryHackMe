@@ -173,9 +173,7 @@ Threat modeling is a critical cybersecurity process used to identify, evaluate, 
 ![Threat Modelling THM (5)](https://github.com/user-attachments/assets/b4270006-c4d9-4e8e-87e6-41e85930c676)
 The **MITRE ATT&CK** (Adversarial Tactics, Techniques, and Common Knowledge) framework is a comprehensive, structured knowledge base of tactics and techniques used by cyber attackers. It’s widely adopted in cybersecurity for understanding, detecting, and responding to advanced threats. Familiarizing yourself with MITRE ATT&CK will help you analyze adversary behavior, improve detection strategies, and enhance threat modeling. 
 
-Here’s a deep dive into MITRE ATT&CK to help you become job-ready:
 
----
 
 ### 1. **What is MITRE ATT&CK?**
 - **Purpose**: It is a globally-accessible, detailed knowledge base of cyber adversary behavior, based on real-world observations. The framework is used for cyber threat intelligence, threat modeling, red/blue teaming, and security operations.
@@ -254,7 +252,8 @@ Understanding these core elements will enable you to use the framework effective
    1. **Simulate ATT&CK Techniques**: Use platforms like **TryHackMe**, **HackTheBox**, or **RangeForce** to practice exploiting and defending against common ATT&CK techniques.
       - For example, simulate **Credential Dumping** using **Mimikatz** or **Lateral Movement** using **RDP** in a lab environment.
    2. **Purple Teaming**: If you’re familiar with both red and blue teaming (i.e., **purple teaming**), you can simulate adversarial techniques and improve detection and response by mapping attacks to ATT&CK.
-      -
+      
+---
 
 The **DREAD** model is a structured approach used for **risk assessment** in cybersecurity. It is designed to evaluate and prioritize threats by breaking them down into five key components: **Damage potential, Reproducibility, Exploitability, Affected users, and Discoverability**. Each component is scored to assess the risk of a potential vulnerability or attack, helping security professionals focus their efforts on the most severe issues.
 
@@ -397,6 +396,9 @@ This would be considered a **high-risk** vulnerability and should be addressed i
 ![Threat Modelling THM (7)](https://github.com/user-attachments/assets/98ea59f4-065f-4f9e-9a55-4f14b983647f)
 ![Threat Modelling THM (8)](https://github.com/user-attachments/assets/1308fe17-ac72-41c7-9f61-d9e7290fec90)
 ![Threat Modelling THM (9)](https://github.com/user-attachments/assets/0d645546-c8c1-4338-abe5-c297c652ea74)
+
+---
+
 **STRIDE** is a threat modeling framework created by Microsoft that helps identify and classify potential security threats in systems or applications. Each letter in STRIDE represents a different category of threat. It’s particularly useful in **threat modeling** exercises to anticipate and mitigate vulnerabilities by thinking like an attacker.
 
 Here’s a breakdown of each category in the STRIDE model:
@@ -535,6 +537,7 @@ Let’s analyze a simple web application using the STRIDE model:
 ![Threat Modelling THM (16)](https://github.com/user-attachments/assets/ae508d52-91fb-492a-a452-6cc26f33573e)
 ![Threat Modelling THM (17)](https://github.com/user-attachments/assets/7ab6624d-a8a3-4e9b-b74b-c309b345c823)
 
+---
 
 The **PASTA** (Process for Attack Simulation and Threat Analysis) framework is a comprehensive risk-centric threat modeling methodology. It is designed to align security activities with business objectives and provide actionable insights for managing cyber risks. PASTA is structured around seven stages, each building on the previous one to produce a detailed understanding of potential attack scenarios and to guide mitigation strategies.
 
@@ -655,3 +658,145 @@ By mastering PASTA, you'll demonstrate a comprehensive ability to perform struct
 ![Threat Modelling THM (22)](https://github.com/user-attachments/assets/bdc4e680-8d57-4f22-9924-b903d5fad06d)
 ![Threat Modelling THM (20)](https://github.com/user-attachments/assets/39da6646-849e-4eac-894e-45ac0f672b64)
 ![Threat Modelling THM (21)](https://github.com/user-attachments/assets/73fd1851-be79-4320-a4c4-d2839a19d6f6)
+
+---
+
+
+The models **MITRE ATT&CK**, **PASTA**, **DREAD**, and **STRIDE** are all frameworks used in cybersecurity for assessing, modeling, and mitigating threats. While each framework has a different focus and methodology, they complement each other in comprehensive security assessments. Below is a comparison of these models across several key factors to help understand their differences and when to use them:
+
+---
+
+### 1. **MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge)**
+
+**Purpose**:  
+- Focuses on **tactics, techniques, and procedures (TTPs)** used by adversaries during a cyberattack. It’s more about understanding and detecting **real-world attack behaviors**.
+
+**Key Features**:
+- **Tactics**: What the attacker’s goals are at each stage (e.g., gaining initial access, lateral movement).
+- **Techniques**: How the attacker achieves their goals (e.g., phishing, exploiting vulnerabilities).
+- **Procedures**: The specific methods used (e.g., command execution, file access).
+- Provides a **comprehensive knowledge base** of adversary behaviors.
+- Useful in **detection, response, and threat hunting** rather than early-stage modeling.
+
+**Use Cases**:
+- **Incident Response**: To map out and analyze attacker behavior in an ongoing incident.
+- **Threat Hunting**: To proactively detect adversaries in your environment by focusing on known attack patterns.
+- **Security Engineering**: To implement defenses around commonly used techniques in attacks.
+
+**Pros**:
+- Focuses on **real-world attacks** and gives practical insight into how attacks are conducted.
+- Can be integrated with tools like SIEM (e.g., **Splunk**, **Elastic**) to automate detection based on attack techniques.
+  
+**Cons**:
+- It’s **reactive** in nature; focuses more on post-attack analysis and detection rather than prevention in the early design stages.
+  
+**Best For**:
+- **SOC Analysts**, **Security Engineers**, and **Threat Hunters** looking for deep insights into adversarial techniques.
+
+---
+
+### 2. **PASTA (Process for Attack Simulation and Threat Analysis)**
+
+**Purpose**:  
+- A **risk-centric threat modeling framework** that emphasizes a **business perspective** by simulating potential attacks and analyzing their impact.
+
+**Key Features**:
+- Follows a **seven-stage process**, including defining objectives, decomposition of the application, threat analysis, vulnerability analysis, and risk assessment.
+- Focuses on **simulating attacks** to predict the likelihood of threats.
+- Looks at **business impact** as part of the threat evaluation.
+  
+**Use Cases**:
+- **Designing Security Controls**: By simulating how attacks would affect business operations, PASTA helps security teams decide on the necessary controls.
+- **Enterprise Risk Management**: Understanding how cyber threats could disrupt business functions, helping align security measures with business priorities.
+
+**Pros**:
+- Ties **technical threats to business risks**, providing a holistic view of security.
+- Helps prioritize threats based on their business impact.
+  
+**Cons**:
+- Complex and time-consuming compared to more lightweight models like STRIDE or DREAD.
+  
+**Best For**:
+- **Security Architects** and **Risk Managers** involved in designing comprehensive security strategies based on business risks.
+
+---
+
+### 3. **DREAD**
+
+**Purpose**:  
+- A **risk assessment model** used to rank and prioritize vulnerabilities based on their potential risk level. It assigns **numeric scores** to different threat aspects for a more objective evaluation.
+
+**Key Features**:
+- **Five categories**: Damage Potential, Reproducibility, Exploitability, Affected Users, and Discoverability.
+- Focused on providing a **numeric score** for each threat based on these factors.
+- Simple and **quick to implement** for risk prioritization.
+
+**Use Cases**:
+- **Vulnerability Management**: Prioritize which vulnerabilities should be remediated first based on their risk scores.
+- **Penetration Testing**: Classify findings from a pen test based on their risk level using the DREAD score.
+
+**Pros**:
+- Provides **quantitative data** that can be helpful for ranking vulnerabilities in terms of risk.
+- Simple, easy to understand, and can be applied quickly in environments with multiple vulnerabilities.
+
+**Cons**:
+- **Subjective** scoring, which can lead to inconsistencies.
+- Does not account for adversarial behavior or how vulnerabilities are actively exploited.
+  
+**Best For**:
+- **Security Engineers** and **Penetration Testers** performing vulnerability assessments and needing quick, repeatable risk evaluations.
+
+---
+
+### 4. **STRIDE**
+
+**Purpose**:  
+- A **threat modeling framework** that helps identify **six different categories of threats** during the design phase of systems or applications.
+
+**Key Features**:
+- Identifies six types of threats: **Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege**.
+- Focused on **preventative** measures and early-stage threat detection.
+- Helps ensure that security is integrated into the system **during development**.
+
+**Use Cases**:
+- **Threat Modeling**: Used in the early stages of system development to identify and address potential threats.
+- **Application Security**: Ensures that common types of attacks (e.g., spoofing or privilege escalation) are mitigated in application architecture.
+
+**Pros**:
+- **Holistic approach** to identifying threats early in the software lifecycle.
+- Structured and **easy to apply** during the design and architecture phases of development.
+
+**Cons**:
+- Doesn’t provide **real-world attack scenarios** (as MITRE ATT&CK does).
+- Doesn’t assign a **numeric score** to threats like DREAD, so it’s more qualitative.
+  
+**Best For**:
+- **Developers**, **Security Architects**, and **Application Security Engineers** aiming to build security into software from the start.
+
+---
+
+### Comparison Summary
+
+| Aspect                  | MITRE ATT&CK                        | PASTA                                  | DREAD                                    | STRIDE                                  |
+|-------------------------|-------------------------------------|----------------------------------------|------------------------------------------|-----------------------------------------|
+| **Focus**               | Real-world attack techniques        | Business-centric threat modeling       | Vulnerability prioritization based on risk | Threat modeling in system design       |
+| **Use Case**            | Detection, response, threat hunting | Enterprise risk management             | Risk-based vulnerability assessment      | Early-stage threat identification      |
+| **Structure**           | Tactics, techniques, procedures     | Seven-stage process, attack simulation | Five factors: Damage, Reproducibility, Exploitability, Affected Users, Discoverability | Six threat types: Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege |
+| **Best For**            | SOC analysts, threat hunters        | Security architects, risk managers     | Security engineers, penetration testers  | Developers, architects, security engineers |
+| **Pros**                | Real-world attacks, detection-ready | Business-focused, comprehensive        | Quantitative, quick to implement         | Comprehensive threat identification     |
+| **Cons**                | Reactive, not design-focused        | Time-consuming, complex                | Subjective scoring                       | No real-world attack examples, qualitative |
+| **Output**              | Real attack patterns and mitigations | Business risk tied to technical threats | Numeric risk score                       | Threat categories for prevention        |
+
+---
+
+### How to Use Each Framework:
+
+- **Use MITRE ATT&CK** when focusing on **detection and threat hunting**. It’s the best tool for understanding how adversaries behave post-attack and is used in **SOC** environments.
+  
+- **Use PASTA** when conducting **enterprise-level threat modeling**, especially if you're focusing on **business risks** and need to simulate potential attacks for prioritizing mitigation strategies.
+
+- **Use DREAD** in **vulnerability management** when you need to **prioritize and rank vulnerabilities** for remediation based on risk.
+
+- **Use STRIDE** during the **design phase of application development** to identify and mitigate common types of security threats early in the process.
+
+Each of these frameworks provides value in different stages of security, and mastering their application can help in diverse roles, from **security engineering** to **incident response** to **application security design**.
