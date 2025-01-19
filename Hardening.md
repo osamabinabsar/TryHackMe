@@ -1092,5 +1092,113 @@ By systematically addressing these areas, you can significantly enhance the secu
 
 
 
+# Network device Hardening
+
+## Network devices vs Endpoint Devices
+
+![image](https://github.com/user-attachments/assets/b1f46070-fe22-4c1c-8f40-119d6550d876)
+![image](https://github.com/user-attachments/assets/500abbd1-1fa3-44b8-a77a-daec266fcb24)
+
+## Hardening Techniques
+
+- Updating and Patching
+- disabling unnecessary services and ports
+- POLP (Principles of Least Privilege)
+- Logs Monitoring
+- Backup Regularly
+- Enforcing Strong Passwords
+- MFA
+- Using secure protocols(HTTPS, SSH, SSL/TLS, IPsec)
+- Removing or blocking insecure protocols(FTP, HTTP, SMTP, Telnet etc)
+- Ensuring correct configuration of secure protocols(LDAP, RDP, SIPS etc.)
+- Implementation of Monitoring and Logging controls
+![image](https://github.com/user-attachments/assets/0d967c94-2800-4f38-a76a-50ea490f88c5)
+
+
+
+## Hardening VPN 
+
+Common commands
+![image](https://github.com/user-attachments/assets/375c15c1-c349-480c-8856-35b0a54af45c)
+
+![image](https://github.com/user-attachments/assets/1b397d40-4724-429e-8318-02cf7bc52180)
+![image](https://github.com/user-attachments/assets/796c463d-249c-41b2-9862-371c7e53cdcd)
+
+# hardening routers, switches, firewalls
+
+Openwrt is a router os and open source
+
+- hardening while setting up
+  - logging default Debug
+  - proper infos like time date hostname etc, for correct identification
+ 
+- Change default creds
+- Enable Secure Nerwork Protocols
+- Disabling Unnecessary Scripts
+  - routers use crontab for better user experience, run scripts, hackers could exploit this
+ 
+- Manage Traffic rules
+- Monitor Traffic
+  - alerts enable to take remedial measures and stop data pilferage timely
+ 
+- Port Forwaarding ocnfiguration
+  ![image](https://github.com/user-attachments/assets/5af105d3-685f-467a-a4f1-837b04d54ad1)
+
+- Monitor schedule tasks
+- update firmware
+
+#### Additional techniques for Enterprise Enviroments
+
+- configuring port security
+  - limiting the number of MAC address
+  - monitoring MAC ADDRESS
+ 
+- Preventing ARP spoofing
+  - enable ARP tables and implement MAC addr filtering
+ 
+- Prevent rouge DHCP server
+  - static DHCP binding
+  - ensure no uniknown devies are added
+ 
+- enable IPV6
+- 
+
+
+## Tools
+
+![image](https://github.com/user-attachments/assets/5565a02b-b23c-422b-aa17-6f9851df76b8)
+
+
+
+# OpenWrt
+![image](https://github.com/user-attachments/assets/93f5cf76-4033-43e9-ad21-169bb6ce8ad2)
+![image](https://github.com/user-attachments/assets/db14add6-038f-4cb7-a6a9-d4aa39c7f2f6)
+![image](https://github.com/user-attachments/assets/0ba736fd-d78d-455c-a141-20cd71d328ba)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
