@@ -1,0 +1,36 @@
+# Security Engineer
+
+Below are the 30 newest markdown files in this repository, arranged oldest-to-newest:
+
+1. [2024-09-25 SSRF.md](../2024-09-25%20%20SSRF.md)
+2. [2024-09-26 Security Engineer Intro .md](../2024-09-26%20Security%20Engineer%20Intro%20.md)
+3. [AOC1.md](../AOC1.md)
+4. [Active Directory Basics.md](../Active%20Directory%20Basics.md)
+5. [Auditing and Monitoring.md](../Auditing%20and%20Monitoring.md)
+6. [Authentication Bypass.md](../Authentication%20Bypass.md)
+7. [Becoming a First Responder.md](../Becoming%20a%20First%20Responder.md)
+8. [Burpsuite.md](../Burpsuite.md)
+9. [Command Injection Jr. Pentest.md](../Command%20Injection%20Jr.%20Pentest.md)
+10. [Content Discovery.md](../Content%20Discovery.md)
+11. [CryptoGraphy Intro.md](../CryptoGraphy%20Intro.md)
+12. [Cyber Crisis Management.md](../Cyber%20Crisis%20Management.md)
+13. [DAST.md](../DAST.md)
+14. [DevSecOps.md](../DevSecOps.md)
+15. [ELKElastic.md](../ELKElastic.md)
+16. [Governance & Regulation.md](../Governance%20%26%20Regulation.md)
+17. [Hardening.md](../Hardening.md)
+18. [Identity and Access Management.md](../Identity%20and%20Access%20Management.md)
+19. [Incident Response and Incident Management.md](../Incident%20Response%20and%20Incident%20Management.md)
+20. [Intro to Cloud Security.md](../Intro%20to%20Cloud%20Security.md)
+21. [John the Ripper.md](../John%20the%20Ripper.md)
+22. [LINUX privEcs.md](../LINUX%20privEcs.md)
+23. [Logging for Accountability.md](../Logging%20for%20Accountability.md)
+24. [Metasploit.md](../Metasploit.md)
+25. [Network Security Protocols.md](../Network%20Security%20Protocols.md)
+26. [OWASP API Security Top 10.md](../OWASP%20API%20Security%20Top%2010.md)
+27. [OWASP ZAP & DVWA.md](../OWASP%20ZAP%20%26%20DVWA.md)
+28. [Protocols and Servers 1 & 2 .md](../Protocols%20and%20Servers%201%20%26%202%20.md)
+29. [Putting it all together.md](../Putting%20it%20all%20together.md)
+30. [README.md](../README.md)
+
+> For further updates or a complete list, see the [full repo](https://github.com/osamabinabsar/TryHackMe/tree/notes).
